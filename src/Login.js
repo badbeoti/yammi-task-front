@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   KeyboardAvoidingView,
@@ -11,10 +11,40 @@ import {
   Keyboard,
 } from 'react-native';
 
-import {useNavigation} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
+
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import {getLogin, postToken} from './api';
+import authSlice from './redux/reducer';
 
 const Login = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  useFocusEffect(
+    React.useCallback(() => {
+      setEmail('');
+      setPassword('');
+    }, []),
+  );
+
+  const login = async () => {
+    const formData = new FormData();
+    formData.append('email', email);
+    formData.append('password', password);
+
+    const token = await postToken(formData);
+
+    dispatch(authSlice.actions.setToken(token.data.access));
+
+    const user = await getLogin();
+    dispatch(authSlice.actions.setUser(user.data));
+
+    navigation.navigate('Transfer');
+  };
 
   return (
     <KeyboardAvoidingView
@@ -23,19 +53,20 @@ const Login = () => {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.inner}>
           <Text style={styles.login}>Login</Text>
-          <TextInput placeholder="email" style={styles.textInput} />
+          <TextInput
+            placeholder="email"
+            style={styles.textInput}
+            onChangeText={text => setEmail(text)}
+          />
           <TextInput
             placeholder="password"
             style={styles.textInput}
             textContentType="password"
             secureTextEntry
+            onChangeText={text => setPassword(text)}
           />
           <View style={styles.btnContainer}>
-            <Button
-              title="login"
-              color="white"
-              onPress={() => navigation.navigate('Transfer')}
-            />
+            <Button title="login" color="white" onPress={login} />
           </View>
           <View style={styles.btnContainer}>
             <Button

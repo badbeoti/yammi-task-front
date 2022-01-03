@@ -13,15 +13,17 @@ import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import 'react-native-gesture-handler';
 
 import RootStack from './src/RootStack';
+import {Provider} from 'react-redux';
+import store from './src/redux/store';
 
 const App: () => Node = () => {
-  const [text, onChangeText] = React.useState('Useless Text');
-
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <StatusBar />
-      <RootStack />
-    </SafeAreaView>
+    <Provider store={store}>
+      <SafeAreaView style={{flex: 1}}>
+        <StatusBar />
+        <RootStack />
+      </SafeAreaView>
+    </Provider>
   );
 };
 
