@@ -12,11 +12,9 @@ import {
 } from 'react-native';
 import {postRegister} from './api';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
-import {useDispatch} from 'react-redux';
 
 const Register = () => {
   const navigation = useNavigation();
-  const dispatch = useDispatch();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

@@ -55,21 +55,21 @@ const Transaction = () => {
         <Text>{index + 1}</Text>
         <View style={styles.column}>
           <Text>보낸 사람</Text>
-          <Text style={styles.sender}>{item.id_sender}</Text>
+          <Text style={styles.data}>{item.id_sender}</Text>
         </View>
         <View style={styles.column}>
           <Text>받은 사람</Text>
-          <Text style={styles.receiver}>{item.id_receiver}</Text>
+          <Text style={styles.data}>{item.id_receiver}</Text>
         </View>
         <View style={styles.column}>
           <Text>금액</Text>
-          <Text style={styles.amount}>
+          <Text style={styles.data}>
             {item.amount.toLocaleString('ko-KR')} 원
           </Text>
         </View>
         <View style={styles.column}>
           <Text>일자</Text>
-          <Text style={styles.amount}>
+          <Text style={styles.data}>
             {moment(item.creation_date).format('YY.MM.DD HH:mm')}
           </Text>
         </View>
@@ -104,13 +104,17 @@ const styles = StyleSheet.create({
   item: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginVertical: 4,
+    alignItems: 'center',
+    marginVertical: 8,
+    backgroundColor: '#c9c9c9',
   },
   column: {
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    height: 36,
+    justifyContent: 'center',
     marginHorizontal: 8,
+  },
+  data: {
+    marginTop: 16,
   },
 });

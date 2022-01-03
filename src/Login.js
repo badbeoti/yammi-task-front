@@ -11,7 +11,7 @@ import {
   Keyboard,
 } from 'react-native';
 
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {getLogin, postToken} from './api';
