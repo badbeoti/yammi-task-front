@@ -54,11 +54,11 @@ const Transaction = () => {
       <View style={styles.item}>
         <Text>{index + 1}</Text>
         <View style={styles.column}>
-          <Text>보낸사람</Text>
+          <Text>보낸 사람</Text>
           <Text style={styles.sender}>{item.id_sender}</Text>
         </View>
         <View style={styles.column}>
-          <Text>받은사람</Text>
+          <Text>받은 사람</Text>
           <Text style={styles.receiver}>{item.id_receiver}</Text>
         </View>
         <View style={styles.column}>
@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
   },
   item: {
     flexDirection: 'row',
+    justifyContent: 'space-around',
     marginVertical: 4,
   },
   column: {
