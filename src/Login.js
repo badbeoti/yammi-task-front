@@ -56,12 +56,14 @@ const Login = () => {
           <TextInput
             placeholder="email"
             style={styles.textInput}
+            value={email}
             onChangeText={text => setEmail(text)}
           />
           <TextInput
             placeholder="password"
             style={styles.textInput}
             textContentType="password"
+            value={password}
             secureTextEntry
             onChangeText={text => setPassword(text)}
           />

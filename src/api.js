@@ -17,7 +17,6 @@ authInstance.interceptors.request.use(
   config => {
     // Do something before request is sent
     const {authSlice} = store.getState();
-    console.log(authSlice);
     config.headers = {
       ...config.headers,
       Authorization: !authSlice.token ? '' : `Bearer ${authSlice.token}`,

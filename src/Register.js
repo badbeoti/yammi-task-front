@@ -39,6 +39,8 @@ const Register = () => {
     try {
       const register = await postRegister(formData);
 
+      console.log(register.data);
+
       navigation.navigate('Login');
     } catch (e) {
       console.log(e.response.data);
@@ -55,18 +57,21 @@ const Register = () => {
           <TextInput
             placeholder="email"
             style={styles.textInput}
+            value={email}
             onChangeText={text => setEmail(text)}
           />
           <TextInput
             placeholder="password"
             style={styles.textInput}
             secureTextEntry
+            value={password}
             onChangeText={text => setPassword(text)}
           />
           <TextInput
             placeholder="password2"
             style={styles.textInput}
             secureTextEntry
+            value={passwordSec}
             onChangeText={text => setPasswordSec(text)}
           />
           <View style={styles.btnContainer}>
